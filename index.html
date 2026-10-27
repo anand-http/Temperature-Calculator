@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Calculator</title>
+    <link rel="shortcut icon" href="thermometer.png">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            background-color: #f8e3a9;
+        }
+
+        .box {
+            margin: 15px;
+            border-radius: 12px;
+            background-color: #ffb59f;
+            text-align: center;
+
+
+            padding: 16px;
+            height: 50vh;
+
+        }
+
+
+
+        input {
+            width: 10%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            margin-top: 20px;
+        }
+
+        #degree {
+            width: 33%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+        }
+
+        button {
+            margin-top: 40px;
+            padding: 12px;
+            cursor: pointer;
+
+            width: 17%;
+            border-radius: 5px;
+            border: none;
+            background-color: aqua;
+
+        }
+
+        button:hover {
+            background-color: white;
+        }
+
+        h2 {
+            margin-top: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Temperature Calculator</h1>
+        <div class="box">
+
+            <h2>Please Enter The Temperature You Want To Convert</h2>
+
+            <form id="tempCal" onsubmit="calculate(); return false">
+                <div class="input">
+
+                    <input id="number" type="number" placeholder="Temperature">
+                    <select name="temp" id="degree">
+                        <option value="Celcius">Celcius to Fahrenheit</option>
+                        <option value="Fahrenheit">Fahrenheit to Celcius</option>
+
+                    </select>
+
+                </div>
+                <button>Submit</button>
+            </form>
+            <h1 id="result"></h1>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <script>
+        const calculate = () => {
+            let number = document.getElementById('number').value;
+            console.log(number);
+
+            let select = document.getElementById('degree');
+            let valuee = select.options[select.selectedIndex].value;
+            console.log(valuee)
+
+
+            const celToFah = (cel) => {
+                let Fahrenheit = Math.round((cel * 9 / 5) + 32);
+                return Fahrenheit;
+            }
+            const fahToCel = (feh) => {
+                let Celcius = Math.round((feh - 32) * 5 / 9);
+                return Celcius;
+            }
+
+
+
+
+
+
+
+            let result;
+
+            if (valuee == 'Celcius') {
+                result = celToFah(number);
+                document.getElementById('result').innerHTML = `${result} Fahrenheit`
+
+            }
+            else {
+                result = fahToCel(number);
+                document.getElementById('result').innerHTML = `${result} °Celcius`
+
+            }
+        }
+
+    </script>
+</body>
+
+</html>
